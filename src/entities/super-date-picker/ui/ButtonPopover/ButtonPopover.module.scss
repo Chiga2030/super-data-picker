@@ -5,9 +5,9 @@
   display: none;
   padding: .5rem;
   border: 1px solid rgba(128, 128, 128, 0);
-  border-radius: .5rem;
+  border-radius: .2rem;
   box-sizing: border-box;
-  box-shadow: 1px 1px 3px gray;
+  box-shadow: 1px 1px 4px #80808080;
 
   &_open {
     display: block;
