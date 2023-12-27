@@ -1,13 +1,25 @@
 .button {
-  background-color: rgba(128, 128, 128, 0.164);
   border: none;
   border-radius: .2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 1px 1px 3px rgba(155, 155, 155, 0.644);
   transition: transform 0.1s ease;
   padding: .5rem;
+
+  &_default {
+    background-color: rgba(128, 128, 128, 0.164);
+    box-shadow: 1px 1px 3px rgba(155, 155, 155, 0.644);
+  }
+
+  &_link {
+    background-color: unset;
+    color: #006BB4;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
   &:hover {
     transform: scale(1.02);
