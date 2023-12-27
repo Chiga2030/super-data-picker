@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction, createContext, useState, } from 'react'
+import { Dispatch, ReactNode, SetStateAction, createContext, useEffect, useState, } from 'react'
 
 
 interface DateContextProps {
@@ -19,9 +19,33 @@ export const EndDateContext = createContext<DateContextProps>({
 })
 
 
-export const ContextProvider = ({ children, }: { children: ReactNode }) => {
+interface Props {
+  children: ReactNode
+  changeStartDateCallback: (value: string) => void
+  changeEndDateCallback: (value: string) => void
+}
+
+
+export const ContextProvider = ({
+  children,
+  changeEndDateCallback,
+  changeStartDateCallback,
+}: Props) => {
   const [ startDate, setStartDate, ] = useState<null | string>(null)
   const [ endDate, setEndDate, ] = useState<null | string>(null)
+
+
+  useEffect(() => {
+    if (startDate && endDate) {
+      changeStartDateCallback(startDate)
+      changeEndDateCallback(endDate)
+    }
+  }, [
+    changeEndDateCallback,
+    changeStartDateCallback,
+    endDate,
+    startDate,
+  ])
 
 
   return (
