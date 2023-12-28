@@ -1,8 +1,9 @@
 .wrapper {
   display: flex;
-  border: 1px solid gray;
+  border: none;
   border-radius: .2rem;
   padding: .5rem;
   gap: 1rem;
   align-items: center;
+  box-shadow: 1px 1px 4px rgba(128, 128, 128, 0.384);
 }
