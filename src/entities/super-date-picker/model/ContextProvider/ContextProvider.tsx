@@ -48,13 +48,17 @@ export const ContextProvider = ({
 
   useEffect(() => {
     /**
-     * Отправляем обновленные данные для полей с датами в callback переданный в компонент
+     * Отправляем обновленные данные для поля даты начала в callback переданный в компонент.
      */
     if (startDate) {
       onChangeStartDate(new Date(startDate))
     }
   }, [ onChangeStartDate, startDate, ])
 
+  useEffect(() => {
+    /**
+     * Отправляем обновленные данные для поля даты конца в callback переданный в компонент.
+     */
     if (endDate) {
       onChangeEndDate(new Date(endDate))
     }
