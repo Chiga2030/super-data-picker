@@ -39,7 +39,11 @@ export const ContextProvider = ({
     /**
      * Отправляем обновленные данные для полей с датами в callback переданный в компонент
      */
+    if (startDate) {
       changeStartDateCallback(startDate)
+    }
+
+    if (endDate) {
       changeEndDateCallback(endDate)
     }
   }, [
