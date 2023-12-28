@@ -5,6 +5,6 @@ import svgr from '@svgr/rollup'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [ svgr(), react(), ],
   base: '/super-data-picker',
+  plugins: [ svgr(), react(), ],
 })
