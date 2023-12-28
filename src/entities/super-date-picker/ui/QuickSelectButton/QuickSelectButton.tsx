@@ -4,6 +4,7 @@ import { ReactComponent as Icon, } from '../../lib/images/settings.svg'
 import { ButtonPopover, } from '../ButtonPopover/ButtonPopover'
 import styles from './QuickSelectButton.module.scss'
 import { QuickSelectContent, } from '../QuickSelectContent/QuickSelectContent'
+import { LastSelectContent, } from '../LastSelectContent/LastSelectContent'
 
 
 export const QuickSelectButton = (): JSX.Element => {
@@ -14,7 +15,12 @@ export const QuickSelectButton = (): JSX.Element => {
 
   return (
     <div className={ styles.wrapper }>
-      <ButtonPopover popoverContent={ <QuickSelectContent /> } >
+      <ButtonPopover popoverContent={
+        <>
+          <QuickSelectContent />
+          <LastSelectContent />
+        </>
+      } >
         { setIsOpen => (
           <Button onClick={ () => handleClick(setIsOpen) }>
             <Icon className={ styles.icon } />
