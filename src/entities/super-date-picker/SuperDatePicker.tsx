@@ -17,14 +17,16 @@ const SuperDatePickerBox = (): JSX.Element => {
   const { date: endDate, setDate: setEndDate, } = useContext(EndDateContext)
 
   const handleChangeStartDate = (value: string) => {
-    if (setStartDate) {
-      setStartDate(String(new Date(value)))
+    const newDate = dayjs(value)
+    if (setStartDate && newDate.isValid()) {
+      setStartDate(String(newDate))
     }
   }
 
   const handleChangeEndDate = (value: string) => {
-    if (setEndDate) {
-      setEndDate(String(new Date(value)))
+    const newDate = dayjs(value)
+    if (setEndDate && newDate.isValid()) {
+      setEndDate(String(newDate))
     }
   }
 
