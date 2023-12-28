@@ -19,6 +19,16 @@ export const EndDateContext = createContext<DateContextProps>({
 })
 
 
+interface LastDate {
+  dateStart: string
+  dateEnd: string
+}
+
+type LastListContextProps = null | LastDate[]
+
+export const LastListContext = createContext<LastListContextProps>(null)
+
+
 interface Props {
   children: ReactNode
   changeStartDateCallback: (value: string) => void
@@ -33,6 +43,7 @@ export const ContextProvider = ({
 }: Props) => {
   const [ startDate, setStartDate, ] = useState<null | string>(null)
   const [ endDate, setEndDate, ] = useState<null | string>(null)
+  const [ lastList, setLastList, ] = useState<LastDate[]>([])
 
 
   useEffect(() => {
@@ -54,6 +65,39 @@ export const ContextProvider = ({
   ])
 
 
+  useEffect(() => {
+    /**
+     * Обновляем список последних используемых дат.
+     */
+    if (startDate && endDate) {
+      const newDate: LastDate = {
+        dateStart: startDate,
+        dateEnd: endDate,
+      }
+
+      setLastList(prev => {
+        if (!prev.some(item => item.dateStart === startDate && item.dateEnd === endDate)) {
+          /**
+           * Если в списке нет такой даты, то просто добавляем ее в начало.
+           */
+          return [ newDate, ...prev, ]
+        }
+
+        /**
+         * Если такая дата есть в списке, то пересобираем список.
+         */
+        const index = prev.findIndex(item => item.dateStart === startDate && item.dateEnd === endDate)
+        if (index !== -1) {
+          prev.splice(index, 1).splice(0, 0, newDate)
+          return prev
+        }
+
+        return prev
+      })
+    }
+  }, [ endDate, startDate, ])
+
+
   return (
     <StartDateContext.Provider value={ {
       date: startDate,
@@ -65,7 +109,9 @@ export const ContextProvider = ({
           setDate: setEndDate,
         } }
       >
-        { children }
+        <LastListContext.Provider value={ lastList }>
+          { children }
+        </LastListContext.Provider>
       </EndDateContext.Provider>
     </StartDateContext.Provider>
   )
