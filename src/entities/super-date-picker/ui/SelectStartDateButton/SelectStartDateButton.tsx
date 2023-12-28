@@ -2,7 +2,7 @@ import { ReactNode, SetStateAction, } from 'react'
 import { ButtonPopover, } from '../ButtonPopover/ButtonPopover'
 import styles from './SelectStartDateButton.module.scss'
 import { Button, } from '../../../../shared/Button'
-import { Tabs, } from '../../../tabs'
+import { Tabs, } from '../../../../shared/Tabs'
 import { AbsoluteDataInput, } from '../AbsoluteDataInput/AbsoluteDataInput'
 import { RelativeDateInput, } from '../RelativeDateInput/RelativeDateInput'
 
