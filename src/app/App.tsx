@@ -3,9 +3,21 @@ import styles from './App.module.scss'
 
 
 function App () {
+  const changeStartDateCallback = (value: Date) => {
+    console.log(value)
+  }
+
+  const changeEndDateCallback = (value: Date) => {
+    console.log(value)
+  }
+
+
   return (
     <main className={ styles.main }>
-      <SuperDatePicker />
+      <SuperDatePicker
+        onChangeStartDate={ changeStartDateCallback }
+        onChangeEndDate={ changeEndDateCallback }
+      />
     </main>
   )
 }
