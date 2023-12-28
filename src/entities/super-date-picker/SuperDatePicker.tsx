@@ -7,8 +7,8 @@ import { ContextProvider, EndDateContext, StartDateContext, } from './model/Cont
 
 
 interface Props {
-  changeStartDateCallback: (value: string) => void
-  changeEndDateCallback: (value: string) => void
+  onChangeStartDate: (value: Date) => void
+  onChangeEndDate: (value: Date) => void
 }
 
 

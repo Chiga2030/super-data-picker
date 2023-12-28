@@ -31,15 +31,15 @@ export const LastListContext = createContext<LastListContextProps>(null)
 
 interface Props {
   children: ReactNode
-  changeStartDateCallback: (value: string) => void
-  changeEndDateCallback: (value: string) => void
+  onChangeStartDate: (value: Date) => void
+  onChangeEndDate: (value: Date) => void
 }
 
 
 export const ContextProvider = ({
   children,
-  changeEndDateCallback,
-  changeStartDateCallback,
+  onChangeEndDate,
+  onChangeStartDate,
 }: Props) => {
   const [ startDate, setStartDate, ] = useState<null | string>(null)
   const [ endDate, setEndDate, ] = useState<null | string>(null)
@@ -51,18 +51,14 @@ export const ContextProvider = ({
      * Отправляем обновленные данные для полей с датами в callback переданный в компонент
      */
     if (startDate) {
-      changeStartDateCallback(startDate)
+      onChangeStartDate(new Date(startDate))
     }
+  }, [ onChangeStartDate, startDate, ])
 
     if (endDate) {
-      changeEndDateCallback(endDate)
+      onChangeEndDate(new Date(endDate))
     }
-  }, [
-    changeEndDateCallback,
-    changeStartDateCallback,
-    endDate,
-    startDate,
-  ])
+  }, [ onChangeEndDate, endDate, ])
 
 
   useEffect(() => {
