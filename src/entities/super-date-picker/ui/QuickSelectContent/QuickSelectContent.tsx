@@ -4,6 +4,7 @@ import styles from './QuickSelectContent.module.scss'
 import { EndDateContext, StartDateContext, } from '../../model/ContextProvider/ContextProvider'
 import { quickSetDates, } from '../../lib/utils/quickSetDates'
 import { commonlyUsedList, } from '../../lib/constants/commonlyUsedList'
+import { Title, } from '../../../../shared/Title'
 
 
 export const QuickSelectContent = (): JSX.Element => {
@@ -13,7 +14,7 @@ export const QuickSelectContent = (): JSX.Element => {
 
   return (
     <div className={ styles.wrapper }>
-      <h2 className={ styles.title }>Обычно используются</h2>
+      <Title>Обычно используются</Title>
 
       <ul className={ styles.list }>
         { commonlyUsedList.map(({ label, value, }) => (
